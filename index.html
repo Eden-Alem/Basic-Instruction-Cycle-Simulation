@@ -176,7 +176,7 @@
                 <div class="wrap-input100 bg1 w-25" data-validate = "Enter Your Email (e@a.x)">
                     <span class="label-input100">Opcode</span>
                     <div>
-                        <select name="oc" id="oc">
+                        <select name="oc" id="oc" required>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="5">5</option>
@@ -247,10 +247,13 @@
         let memoAddressId = 100002;
         let memoPointerId = 1000002;
         function myFunction() {
-            if (document.getElementById(parseInt(document.getElementById('mp').value))) {
-                alert("Memory address already occupied");
-                return;
-            }
+            let maxRange = document.getElementsByClassName("memopointer");
+            for (let index = 0; index < maxRange.length; index++) {
+                if (document.getElementById(1000001+index).value == document.getElementById('mp').value) {
+                    alert("Memory address "+ document.getElementById(1000001+index).value+ " already occupied.");
+                    return;
+                }
+            }            
 
             var memoryPointer = document.createElement("CANVAS");
             var ctx = memoryPointer.getContext("2d");
@@ -260,8 +263,6 @@
             document.getElementById("pointer").appendChild(memoryPointer); 
             drawInstructions(memoryPointer.id, document.getElementById('mp').value, "40px Arial");
             memoPointerId += 1;
-
-            // console.log(document.getElementById(1000002).value);
 
             var operationalCode = document.createElement("CANVAS");
             var ctx = operationalCode.getContext("2d");
