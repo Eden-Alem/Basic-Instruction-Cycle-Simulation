@@ -253,7 +253,19 @@
                     alert("Memory address "+ document.getElementById(1000001+index).value+ " already occupied.");
                     return;
                 }
-            }            
+                
+                if (!(document.getElementById('oc').value == 5)) {
+                    if (document.getElementById(100001+index).value == document.getElementById('ma').value) {
+                        alert("Memory address "+ document.getElementById(100001+index).value+ " already occupied.");
+                        return;
+                    }
+                }
+            } 
+
+            if ((document.getElementById('mp').value <= 300) || (document.getElementById('ma').value < 940)) {
+                alert("Invalid memory address allocation.");
+                return;
+            }          
 
             var memoryPointer = document.createElement("CANVAS");
             var ctx = memoryPointer.getContext("2d");
