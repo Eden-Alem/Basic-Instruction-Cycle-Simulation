@@ -256,9 +256,12 @@
             var ctx = memoryPointer.getContext("2d");
             memoryBuilder(memoryPointer, 100, 50, "border:1px solid #c3c3c3;", memoPointerId, "memopointer");
             console.log(parseInt(document.getElementById('mp').value));
+            memoryPointer.value = document.getElementById('mp').value;
             document.getElementById("pointer").appendChild(memoryPointer); 
             drawInstructions(memoryPointer.id, document.getElementById('mp').value, "40px Arial");
             memoPointerId += 1;
+
+            // console.log(document.getElementById(1000002).value);
 
             var operationalCode = document.createElement("CANVAS");
             var ctx = operationalCode.getContext("2d");
