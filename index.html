@@ -25,12 +25,19 @@
 
 <body>
 
-    <canvas id="base" width="500" height="50"
-        style="border:1px solid #c3c3c3; margin: 0.3%;">
-    </canvas>
+    <!-- Title and refresh icon -->
+    <div style="display: flex; justify-content: space-between; margin-right: 1%; ">
+        <canvas id="base" width="500" height="50"
+            style="border:1px solid #c3c3c3; margin: 0.2%;">
+        </canvas>
+        <div style="margin: 0.5%;">
+            <i onclick="location.reload();" class="fa fa-refresh" style="font-size:24px" aria-hidden="true" ></i>
+        </div>
+    </div>
 
     <div style="height: 15px;"></div>
 
+    <!-- Opcodes table -->
     <div class="instructions">
             <div class="pointers" >
                 <canvas id="opcode" width="120" height="42"
@@ -64,8 +71,10 @@
 
     <div style="height: 25px;"></div>
 
+    <!-- Memory addresses table, CPU registers table and form for altering memory address table -->
     <div class="canvas">
 
+        <!-- Memory table -->
         <div class="memory" id="memory">
             <div class="memories" id="memories">
                 <div class="pointers" id="pointer" >
@@ -79,7 +88,7 @@
                 </div>
 
                 <div class="pointers" id="opco">
-                    <canvas id="memor" width="50" height="41"
+                    <canvas id="memor" width="50" height="42"
                         style="border-top:1px solid #c3c3c3;">
                     </canvas>
                     <canvas class="memoopcode" id=1 width="50" height="50"
@@ -131,6 +140,7 @@
 
         </div>
 
+        <!-- CPU table -->
         <div class="cpu">
             <div class="registers">
                 <canvas id="cpu" width="120" height="42"
@@ -162,6 +172,7 @@
             </div>
         </div>
 
+        <!-- Form for manipulating memory address table -->
         <div class="wrap-contact100 contact100-whole">
             <form class="contact100-form">
                 <span class="contact100-form-title">
@@ -214,6 +225,7 @@
     
     </div>
 
+    <!-- Start implementation button -->
     <div class="container-contact100-form-btn">
         <button class="contact100-form-btn" id="start">
             <span>
@@ -226,6 +238,7 @@
 
     <script>
 
+        // Check whether required inputs are filled
         function ValidateForm() {
             if (document.getElementById('ma').value == "" || document.getElementById('mp').value == "") {
                 return;
@@ -235,6 +248,7 @@
             }
         }
 
+        // Set width, height, style, id and className of created Canvas
         function memoryBuilder(name, w, h, s, id, c) {
             name.width = w;
             name.height = h;
@@ -243,6 +257,7 @@
             name.className = c;
         }
 
+        // Append row of memory table before dashed line when form is submitted to create new canvas row
         let opCodeId = 2;
         let memoAddressId = 100002;
         let memoPointerId = 1000002;
@@ -266,8 +281,8 @@
                 alert("Invalid memory address allocation.");
                 return;
             }   
-            
-            if (!(/^\d+$/.test(document.getElementById('mp').value)) || !(/^\d+$/.test(document.getElementById('ma').value)) || !(/^\d+$/.test(document.getElementById('sv').value))) {
+
+            if (!(/^\d*$/.test(document.getElementById('mp').value)) || !(/^\d*$/.test(document.getElementById('ma').value)) || !(/^\d*$/.test(document.getElementById('sv').value))) {
                 alert("Invalid input");
                 return;
             }
@@ -302,6 +317,7 @@
             valuesConstructor(operationalCode.value);
         }
 
+        // Append row of memory table after dashed line when form is submitted to create new canvas row
         let memoryAddressId = 102;
         let opCodeIdName = 1002;
         let storedValueId = 10002;
@@ -339,6 +355,7 @@
             }
         }
 
+        // Clear form fields after submission
         function ClearFields() {
             document.getElementById("mp").value = "";
             document.getElementById("oc").value = "";
@@ -346,7 +363,7 @@
             document.getElementById("sv").value = "";
         }
 
-                
+        // Draw canvas element and write text altering idName, Text to be written and style of the canvas  
         function drawInstructions(id, name, style) {
             var ctx = document.getElementById(id).getContext("2d");
             ctx.fillStyle = "#34495e ";    
@@ -354,12 +371,15 @@
             ctx.fillText(name, 20, 40);
         }
 
+        // Draw canvas with text 300
         drawInstructions(1000001, "300", "40px Arial");
         document.getElementById(1000001).value = 300;
 
+        // Draw canvas with text 940
         drawInstructions(101, "940", "40px Arial");
         document.getElementById(101).value = 940;
 
+        // Draw opcodes table with the instructions
         drawInstructions("0001", "0001", "30px Arial");
         drawInstructions("0010", "0010", "30px Arial");
         drawInstructions("0101", "0101", "30px Arial");
@@ -367,6 +387,7 @@
         drawInstructions("inst2", "Store AC to memory", "30px Arial");
         drawInstructions("inst3", "Add to AC from memory", "30px Arial");
 
+        // Draw canvas and write titles of a box altering idName, Text to be written and style of the canvas
         function drawTitles(id, name, style) {
             var canvas = document.getElementById(id);
             var ctx = canvas.getContext("2d");
@@ -382,6 +403,7 @@
         drawTitles("cpu", "CPU Registers", "16.5px Arial");
         drawTitles("base", "Basic Instruction Cycle", "35px Arial");
 
+        // Fill background color of canvas (title of table) using idName
         function fillColor(id) {
             var canvas = document.getElementById(id);
             var ctx = canvas.getContext("2d");
@@ -394,6 +416,7 @@
         fillColor("memorr");
         fillColor("cpur");
 
+        // Draw canvas and write text of opcode
         function drawAddresses(id, name) {
             var ctx = document.getElementById(id).getContext("2d");
             ctx.fillStyle = "#34495e ";    
@@ -401,24 +424,30 @@
             ctx.fillText(name, 25, 40);
         }
 
+        // Draw canvas with 1 as an opcode value
         drawAddresses(1, "1");
         document.getElementById(1).value = 1;
 
+        // Draw canvas with 0 as an opcode value
         drawAddresses(1001, "0");
 
+        // Draw canvas and write text of memory addresses and values altering idName and Text to be written
         function mDrawAddresses(id, name) {
             var ctx = document.getElementById(id).getContext("2d");
             ctx.fillStyle = "#34495e ";    
             ctx.font = "40px Arial";
             ctx.fillText(name, 10, 40);
         }
-        
+ 
+        // Draw canvas with text 940 as a memory address
         mDrawAddresses(100001, "940");
         document.getElementById(100001).value = 940;
 
+        // Draw canvas with text 003 as a value for the memory address 940
         mDrawAddresses(10001, "003");
         document.getElementById(10001).value = 003;
 
+        // Draw canvas and write text of column with registers in the CPU
         function drawCPURegisters(id, name) {
             var ctx = document.getElementById(id).getContext("2d");
             ctx.fillStyle = "#34495e ";    
@@ -426,16 +455,19 @@
             ctx.fillText(name, 15, 40);
         }
 
+        // Registers in the CPU
         drawCPURegisters("pc", "PC");
         drawCPURegisters("ac", "AC");
         drawCPURegisters("ir", "IR");
 
+        // Clear canvas using specific id (remove text or stroke)
         function clearText(id) {
             var canvas = document.getElementById(id);
             var ctx = canvas.getContext("2d");
             ctx.clearRect(0,0,canvas.width,canvas.height);
         }
 
+        // Stroke a rectangle around the canvas with red color using idName and width of the rectangle
         function highlightText(id, width) {
             var ctx = document.getElementById(id).getContext("2d");
             ctx.strokeStyle = "  #e74c3c  ";   
@@ -443,16 +475,19 @@
             ctx.strokeRect(5, 5, width, 40);
         }
 
+        // Pad zeros infront of values of memory addresses before displaying on canvas
         function leadingZeros(num,size) {
             num = num.toString();
             while (num.length < size) num = "0" + num;
             return num;
         }
 
+        // Invoke implementer method when start implementation is clicked
         document.getElementById("start").onclick = function() {         
             implementer();
         };
 
+        // Remove lastly added canvas elements when the button remove last input is clicked
         function removeLastElement() {
             let maxRange = document.getElementsByClassName("memopointer");
             for (var i = maxRange.length - 1; i > 0; i--) {
@@ -468,6 +503,7 @@
             }
         }
 
+        // Invoked to demonstrate simulation (each round taking 8 seconds)
         let accumulator = 0;
         function implementer() {
             let maxRange = document.getElementsByClassName("memopointer");
@@ -507,21 +543,31 @@
                     highlightText(100001+index, 90);   
                 }, 5000 + ((1000+8000) * index));
 
-                setTimeout(() => {   
+                setTimeout(() => {  
                     highlightText(101+index, 90);   
                 }, 6000 + ((1000+8000) * index));
 
                 setTimeout(() => {    
                     clearText("acn");
                     if(document.getElementById(1+index).value == 1) {  
-                        accumulator += parseInt(document.getElementById(10001+index).value);
+                        accumulator += parseInt(document.getElementById(10001+index).value) || 0;
                         drawInstructions("acn", leadingZeros(document.getElementById(10001+index).value, 4), "40px Arial");  
                     } else if (document.getElementById(1+index).value == 2) {
-                        accumulator += parseInt(document.getElementById(10001+index).value);
+                        accumulator += parseInt(document.getElementById(10001+index).value) || 0;
                         drawInstructions("acn", leadingZeros(accumulator, 4), "40px Arial");                       
                     } else {
-                        clearText(10001);
-                        mDrawAddresses(10001, leadingZeros(accumulator, 3));                      
+                        // clearText(10001+index);
+                        for (let i = 0; i < maxRange.length; i++) {
+                            if (document.getElementById(101+i).value == document.getElementById(101+index).value) {
+                                clearText(10001+i);
+                                mDrawAddresses(10001+i, leadingZeros(accumulator, 3));
+                            }
+                            else {
+                                clearText(10001+index);
+                                mDrawAddresses(10001+index, leadingZeros(accumulator, 3)); 
+                            }                        
+                        }   
+                        accumulator = 0;                  
                     }                    
 
                 }, 7000 + ((1000+8000) * index));
