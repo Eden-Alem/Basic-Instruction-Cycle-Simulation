@@ -1,0 +1,37 @@
+.pointers {
+    display: flex;
+    flex-direction: column;
+}
+
+.registers {
+    display: flex;
+    flex-direction: column;
+}
+
+.instructions {
+    display: flex;
+    justify-content: center;
+}
+
+.memories {
+    display: flex;
+}
+
+.values {
+    display: flex;
+}
+
+.cpu {
+    display: flex;
+}
+
+.vl {
+    border-left: 6px dashed #c3c3c3;
+    height: 103px;
+    align-self: center;
+}
+
+.canvas {
+    display: flex;
+    justify-content: space-evenly;
+}

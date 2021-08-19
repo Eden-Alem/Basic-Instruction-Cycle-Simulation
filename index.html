@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <title>Basic Instruction Cycle</title>
+</head>
+
+<body>
+
+    <canvas id="base" width="500" height="50"
+        style="border:1px solid #c3c3c3; margin: 0.3%;">
+    </canvas>
+
+    <div style="height: 15px;"></div>
+
+    <div class="instructions">
+            <div class="pointers" >
+                <canvas id="opcode" width="120" height="42"
+                style="border-top:1px solid #c3c3c3; border-left:1px solid #c3c3c3;">
+                </canvas>
+                <canvas id="0001" width="120" height="48"
+                style="border:1px solid #c3c3c3;">
+                </canvas>
+                <canvas class="pointer"  id="0010" width="120" height="48"
+                style="border:1px solid #c3c3c3;">
+                </canvas>
+                <canvas class="pointer"  id="0101"  width="120" height="48"
+                style="border:1px solid #c3c3c3;">
+                </canvas>
+            </div>
+            <div class="pointers" >
+                <canvas id="opcodes" width="500" height="42"
+                style="border-top:1px solid #c3c3c3; border-right:1px solid #c3c3c3;">
+                </canvas>
+                <canvas id="inst1" width="500" height="48"
+                style="border:1px solid #c3c3c3;">
+                </canvas>
+                <canvas class="pointer"  id="inst2" width="500" height="48"
+                style="border:1px solid #c3c3c3;">
+                </canvas>
+                <canvas class="pointer"  id="inst3"  width="500" height="48"
+                style="border:1px solid #c3c3c3;">
+                </canvas>
+            </div>
+    </div>
+
+    <div style="height: 25px;"></div>
+
+    <div class="canvas">
+
+        <div class="memory" id="memory">
+            <div class="memories" id="memories">
+                <div class="pointers" id="pointer" >
+                    <canvas id="memo" width="100" height="42"
+                        style="border-top:1px solid #c3c3c3; border-left:1px solid #c3c3c3;">
+                    </canvas>
+                    <canvas class="memopointer" id=1000001 width="100" height="50"
+                        style="border:1px solid #c3c3c3;">
+                    </canvas>
+
+                </div>
+
+                <div class="pointers" id="opco">
+                    <canvas id="memor" width="50" height="41"
+                        style="border-top:1px solid #c3c3c3;">
+                    </canvas>
+                    <canvas class="memoopcode" id=1 width="50" height="50"
+                        style="border-top:1px solid #c3c3c3; border-left:1px solid #c3c3c3; border-bottom:1px solid #c3c3c3;">
+                    </canvas>
+
+                </div>
+
+                <div class="pointers" id="address">
+                    <canvas id="memorr" width="100" height="42"
+                        style="border-top:1px solid #c3c3c3; border-right:1px solid #c3c3c3;" >
+                    </canvas>
+                    <canvas class="memoaddress" id=100001 width="100" height="50"
+                        style="border-top:1px solid #c3c3c3; border-right:1px solid #c3c3c3; border-bottom:1px solid #c3c3c3;" >
+                    </canvas>
+
+                </div>
+            </div>
+
+            <div class="values" id="values">
+                <div class="pointers" id="value1" >
+                    <div class="vl">
+                    </div>
+                    <canvas class="mempointer"  id=101  width="100" height="50"
+                        style="border:1px solid #c3c3c3;">
+                    </canvas>
+        
+                </div>
+        
+                <div class="pointers" id="value2">
+                    <div style="height: 103px;">
+                    </div>
+                    <canvas class="memopcode"  id=1001  width="50" height="50"
+                        style="border-top:1px solid #c3c3c3; border-left:1px solid #c3c3c3; border-bottom:1px solid #c3c3c3;">
+                    </canvas>
+        
+                </div>
+        
+                <div class="pointers" id="value3">
+                    <div class="vl" style="align-self: flex-start; height: 103px;">
+                    </div>
+                    <canvas class="memaddress" value=003  id=10001  width="100" height="50"
+                        style="border-top:1px solid #c3c3c3; border-right:1px solid #c3c3c3; border-bottom:1px solid #c3c3c3;">
+                    </canvas>
+        
+                </div>
+        
+            </div>
+
+        </div>
+
+        <div class="cpu">
+            <div class="registers">
+                <canvas id="cpu" width="120" height="42"
+                    style="border-top:1px solid #c3c3c3; border-left:1px solid #c3c3c3;">
+                </canvas>
+                <canvas id="pcn" width="120" height="50"
+                    style="border:1px solid #c3c3c3;">
+                </canvas>
+                <canvas class="pointer"  id="acn" width="120" height="50"
+                    style="border:1px solid #c3c3c3;">
+                </canvas>
+                <canvas class="pointer"  id="irn"  width="120" height="50"
+                    style="border:1px solid #c3c3c3;">
+                </canvas>
+            </div>
+            <div class="registers" >
+                <canvas id="cpur" width="80" height="42"
+                    style="border-top:1px solid #c3c3c3; border-right:1px solid #c3c3c3;">
+                </canvas>
+                <canvas id="pc" width="80" height="50"
+                    style="border:1px solid #c3c3c3;">
+                </canvas>
+                <canvas class="pointer"  id="ac" width="80" height="50"
+                    style="border:1px solid #c3c3c3;">
+                </canvas>
+                <canvas class="pointer"  id="ir"  width="80" height="50"
+                    style="border:1px solid #c3c3c3;">
+                </canvas>
+            </div>
+        </div>
+
+        <div class="wrap-contact100 contact100-whole">
+            <form class="contact100-form">
+                <span class="contact100-form-title">
+                    Add Here
+                </span>
+
+                <div class="wrap-input100 bg1">
+                    <span class="label-input100">Memory Address Pointer</span>
+                    <input class="input100" type="text" id="mp" placeholder="Eg- 301, 302, ..." required>
+                </div>
+
+                <div class="wrap-input100 bg1 w-25" data-validate = "Enter Your Email (e@a.x)">
+                    <span class="label-input100">Opcode</span>
+                    <div>
+                        <select name="oc" id="oc">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="wrap-input100 bg1 w-75">
+                    <span class="label-input100">Memory Address</span>
+                    <input class="input100" type="text" id="ma" placeholder="Eg- 940, 941,..." required>
+                </div>
+
+                <div class="wrap-input100 input100-select bg1">
+                    <span class="label-input100">Value to Store</span>                
+                    <input class="input100" type="text" id="sv" placeholder="Eg- 003, 002,...">
+                </div>
+
+                <div class="container-contact100-form-btn">
+                    <button class="contact100-form-btn" onclick="ValidateForm();">
+                        <span>
+                            Add
+                        </span>
+                    </button>
+                </div>
+                
+            </form>
+            <div class="container-contact100-form-btn">
+                <button class="contact100-form-btn" onclick="removeLastElement()">
+                    <span>
+                        Remove Last Input
+                    </span>
+                </button>
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="container-contact100-form-btn">
+        <button class="contact100-form-btn" id="start">
+            <span>
+                Start implementation
+                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+            </span>
+        </button>
+    </div>
+
+
+    <script>
+
+        function ValidateForm() {
+            if (document.getElementById('ma').value == "" || document.getElementById('mp').value == "") {
+                return;
+            } else {
+                myFunction();
+                ClearFields(); 
+            }
+        }
+
+        function memoryBuilder(name, w, h, s, id, c) {
+            name.width = w;
+            name.height = h;
+            name.style = s;
+            name.id = id;
+            name.className = c;
+        }
+
+        let opCodeId = 2;
+        let memoAddressId = 100002;
+        let memoPointerId = 1000002;
+        function myFunction() {
+            if (document.getElementById(parseInt(document.getElementById('mp').value))) {
+                alert("Memory address already occupied");
+                return;
+            }
+
+            var memoryPointer = document.createElement("CANVAS");
+            var ctx = memoryPointer.getContext("2d");
+            memoryBuilder(memoryPointer, 100, 50, "border:1px solid #c3c3c3;", memoPointerId, "memopointer");
+            console.log(parseInt(document.getElementById('mp').value));
+            document.getElementById("pointer").appendChild(memoryPointer); 
+            drawInstructions(memoryPointer.id, document.getElementById('mp').value, "40px Arial");
+            memoPointerId += 1;
+
+            var operationalCode = document.createElement("CANVAS");
+            var ctx = operationalCode.getContext("2d");
+            memoryBuilder(operationalCode, 50, 50, "border-left:1px solid #c3c3c3; border-bottom:1px solid #c3c3c3;", opCodeId, "memoopcode");
+            console.log(document.getElementById('oc').value);
+            operationalCode.value = document.getElementById('oc').value;
+            document.getElementById("opco").appendChild(operationalCode); 
+            drawAddresses(operationalCode.id, document.getElementById('oc').value);
+            opCodeId += 1;
+
+            var memoryAddress = document.createElement("CANVAS");
+            var ctx = memoryAddress.getContext("2d");
+            memoryBuilder(memoryAddress, 100, 50, "border-right:1px solid #c3c3c3; border-bottom:1px solid #c3c3c3;", memoAddressId, "memoaddress");
+            console.log(document.getElementById('ma').value);
+            memoryAddress.value = document.getElementById('ma').value;
+            document.getElementById("address").appendChild(memoryAddress);         
+            mDrawAddresses(memoryAddress.id, document.getElementById('ma').value);
+            memoAddressId += 1;
+
+            valuesConstructor(operationalCode.value);
+        }
+
+        let memoryAddressId = 102;
+        let opCodeIdName = 1002;
+        let storedValueId = 10002;
+        function valuesConstructor(opCodeI) {
+            
+            var memoryAddress = document.createElement("CANVAS");
+            var ctx = memoryAddress.getContext("2d");
+            memoryBuilder(memoryAddress, 100, 50, "border:1px solid #c3c3c3; ", memoryAddressId, "mempointer");
+            console.log(document.getElementById('ma').value);
+            memoryAddress.value = document.getElementById('ma').value;
+            document.getElementById("value1").appendChild(memoryAddress);         
+            drawInstructions(memoryAddress.id, document.getElementById('ma').value, "40px Arial");
+            memoryAddressId += 1;
+
+            var operationalCode = document.createElement("CANVAS");
+            var ctx = operationalCode.getContext("2d");
+            memoryBuilder(operationalCode, 50, 50, "border-top:1px solid #c3c3c3; border-left:1px solid #c3c3c3; border-bottom:1px solid #c3c3c3;", opCodeIdName, "memopcode");
+            document.getElementById("value2").appendChild(operationalCode); 
+            drawAddresses(operationalCode.id, "0");
+            opCodeIdName += 1;
+
+            var storedValue = document.createElement("CANVAS");
+            var ctx = storedValue.getContext("2d");
+            memoryBuilder(storedValue, 100, 50, "border-top:1px solid #c3c3c3; border-right:1px solid #c3c3c3; border-bottom:1px solid #c3c3c3;", storedValueId, "memaddress");
+            console.log(document.getElementById('sv').value);
+            storedValue.value = document.getElementById('sv').value;
+            document.getElementById("value3").appendChild(storedValue); 
+            mDrawAddresses(storedValue.id, document.getElementById('sv').value);
+            storedValueId += 1;
+
+            if (opCodeI == 5) {
+                memoryAddress.style.display="none";
+                operationalCode.style.display="none";
+                storedValue.style.display="none";
+            }
+        }
+
+        function ClearFields() {
+            document.getElementById("mp").value = "";
+            document.getElementById("oc").value = "";
+            document.getElementById("ma").value = "";
+            document.getElementById("sv").value = "";
+        }
+
+                
+        function drawInstructions(id, name, style) {
+            var ctx = document.getElementById(id).getContext("2d");
+            ctx.fillStyle = "#34495e ";    
+            ctx.font = style;
+            ctx.fillText(name, 20, 40);
+        }
+
+        drawInstructions(1000001, "300", "40px Arial");
+        document.getElementById(1000001).value = 300;
+
+        drawInstructions(101, "940", "40px Arial");
+        document.getElementById(101).value = 940;
+
+        drawInstructions("0001", "0001", "30px Arial");
+        drawInstructions("0010", "0010", "30px Arial");
+        drawInstructions("0101", "0101", "30px Arial");
+        drawInstructions("inst1", "Load AC from memory", "30px Arial");
+        drawInstructions("inst2", "Store AC to memory", "30px Arial");
+        drawInstructions("inst3", "Add to AC from memory", "30px Arial");
+
+        function drawTitles(id, name, style) {
+            var canvas = document.getElementById(id);
+            var ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#1b2631";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#FFFFFF";    
+            ctx.font = style;
+            ctx.fillText(name, 10, 35);
+        }
+
+        drawTitles("opcodes", '      Opcodes', "35px Arial");
+        drawTitles("memo", 'Memory', "20px Arial");
+        drawTitles("cpu", "CPU Registers", "16.5px Arial");
+        drawTitles("base", "Basic Instruction Cycle", "35px Arial");
+
+        function fillColor(id) {
+            var canvas = document.getElementById(id);
+            var ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#1b2631";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        fillColor("opcode");
+        fillColor("memor");
+        fillColor("memorr");
+        fillColor("cpur");
+
+        function drawAddresses(id, name) {
+            var ctx = document.getElementById(id).getContext("2d");
+            ctx.fillStyle = "#34495e ";    
+            ctx.font = "40px Arial";
+            ctx.fillText(name, 25, 40);
+        }
+
+        drawAddresses(1, "1");
+        document.getElementById(1).value = 1;
+
+        drawAddresses(1001, "0");
+
+        function mDrawAddresses(id, name) {
+            var ctx = document.getElementById(id).getContext("2d");
+            ctx.fillStyle = "#34495e ";    
+            ctx.font = "40px Arial";
+            ctx.fillText(name, 10, 40);
+        }
+        
+        mDrawAddresses(100001, "940");
+        document.getElementById(100001).value = 940;
+
+        mDrawAddresses(10001, "003");
+        document.getElementById(10001).value = 003;
+
+        function drawCPURegisters(id, name) {
+            var ctx = document.getElementById(id).getContext("2d");
+            ctx.fillStyle = "#34495e ";    
+            ctx.font = "35px Arial";
+            ctx.fillText(name, 15, 40);
+        }
+
+        drawCPURegisters("pc", "PC");
+        drawCPURegisters("ac", "AC");
+        drawCPURegisters("ir", "IR");
+
+        function clearText(id) {
+            var canvas = document.getElementById(id);
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+        }
+
+        function highlightText(id, width) {
+            var ctx = document.getElementById(id).getContext("2d");
+            ctx.strokeStyle = "  #e74c3c  ";   
+            ctx.lineWidth = 4; 
+            ctx.strokeRect(5, 5, width, 40);
+        }
+
+        function leadingZeros(num,size) {
+            num = num.toString();
+            while (num.length < size) num = "0" + num;
+            return num;
+        }
+
+        document.getElementById("start").onclick = function() {         
+            implementer();
+        };
+
+        function removeLastElement() {
+            let maxRange = document.getElementsByClassName("memopointer");
+            for (var i = maxRange.length - 1; i > 0; i--) {
+                console.log(i);
+                document.getElementById(101+i).remove();
+                document.getElementById(1001+i).remove();
+                document.getElementById(10001+i).remove();
+
+                document.getElementById(100001+i).remove();
+                document.getElementById(1+i).remove();
+                document.getElementById(1000001+i).remove();
+
+            }
+        }
+
+        let accumulator = 0;
+        function implementer() {
+            let maxRange = document.getElementsByClassName("memopointer");
+            for (let index = 0; index < maxRange.length; index++) {
+                setTimeout(() => {      
+                    highlightText(1000001 + index, 90);  
+
+                    clearText("pcn");  
+                    clearText("irn"); 
+                }, 0 + ((1000+8000) * index));
+                
+                setTimeout(() => {    
+                    // clearText("pcn");  
+                    drawInstructions("pcn", document.getElementById(1000001 + index).value, "40px Arial");      
+                }, 1000 + ((1000+8000) * index));
+
+                setTimeout(() => {   
+                    // clearText("irn");
+                    drawInstructions("irn", document.getElementById(1+index).value + "" + document.getElementById(100001+index).value , "40px Arial");      
+                }, 2000 + ((1000+8000) * index));
+
+                setTimeout(() => {   
+                    highlightText(1+index, 45);   
+                }, 3000 + ((1000+8000) * index));
+
+                setTimeout(() => {  
+                    if(document.getElementById(1+index).value == 1) {
+                        highlightText("inst1", 400);  
+                    } else if (document.getElementById(1+index).value == 2) {
+                        highlightText("inst2", 400);                          
+                    } else {
+                        highlightText("inst3", 400);                       
+                    }                    
+                }, 4000 + ((1000+8000) * index));
+
+                setTimeout(() => {   
+                    highlightText(100001+index, 90);   
+                }, 5000 + ((1000+8000) * index));
+
+                setTimeout(() => {   
+                    highlightText(101+index, 90);   
+                }, 6000 + ((1000+8000) * index));
+
+                setTimeout(() => {    
+                    clearText("acn");
+                    if(document.getElementById(1+index).value == 1) {  
+                        accumulator += parseInt(document.getElementById(10001+index).value);
+                        drawInstructions("acn", leadingZeros(document.getElementById(10001+index).value, 4), "40px Arial");  
+                    } else if (document.getElementById(1+index).value == 2) {
+                        accumulator += parseInt(document.getElementById(10001+index).value);
+                        drawInstructions("acn", leadingZeros(accumulator, 4), "40px Arial");                       
+                    } else {
+                        clearText(10001);
+                        mDrawAddresses(10001, leadingZeros(accumulator, 3));                      
+                    }                    
+
+                }, 7000 + ((1000+8000) * index));
+
+                setTimeout(() => {  
+                    clearText(101+index);
+                    clearText(100001+index);
+                    clearText(1+index);
+                    clearText("inst1");
+                    clearText("inst2");
+                    clearText("inst3");
+
+                    drawInstructions(101+index, document.getElementById(101+index).value, "40px Arial");
+                    mDrawAddresses(100001+index, document.getElementById(100001+index).value);
+                    drawAddresses(1+index, document.getElementById(1+index).value);
+                    drawInstructions("inst1", "Load AC from memory", "30px Arial");
+                    drawInstructions("inst2", "Store AC to memory", "30px Arial");
+                    drawInstructions("inst3", "Add to AC from memory", "30px Arial"); 
+                }, 8000 + ((1000+8000) * index));
+                    
+            }            
+        }
+ 
+    </script>
+
+</body>
+</html>
