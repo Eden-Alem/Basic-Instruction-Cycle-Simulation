@@ -265,7 +265,12 @@
             if ((document.getElementById('mp').value <= 300) || (document.getElementById('ma').value < 940)) {
                 alert("Invalid memory address allocation.");
                 return;
-            }          
+            }   
+            
+            if (!(/^\d+$/.test(document.getElementById('mp').value)) || !(/^\d+$/.test(document.getElementById('ma').value)) || !(/^\d+$/.test(document.getElementById('sv').value))) {
+                alert("Invalid input");
+                return;
+            }
 
             var memoryPointer = document.createElement("CANVAS");
             var ctx = memoryPointer.getContext("2d");
