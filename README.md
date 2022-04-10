@@ -1,13 +1,5 @@
 # Basic Instruction Cycle Simulation
 
-Team Members:
-    1. Dagmawit Getachew - ATR/3566/11 - Section 1
-    2. Eden Berhan Alem - ATR/3661/11 - Section 2
-    3. Elshadai Kassu Tegegn - ATR/1831/11 - Section 2
-    4. Mintesnot Bezabhi Lemu - ATR/9596/11 - Section 2
-    5. Tewodros Mesfin Berahnu - ETR/1103/11 - Section 2
-
-
 Screen recording of the simulation can be accessed with the link below:
 https://drive.google.com/file/d/1NtLAVwPY4GUiicEsGBPh8fb5eEGBJBqR/view?usp=sharing
 
